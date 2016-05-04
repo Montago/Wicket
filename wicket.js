@@ -650,9 +650,13 @@
         multilinestring: function(multilinestring) {
             var i, parts = [];
 
-            for (i = 0; i < multilinestring.length; i += 1) {
-                parts.push(this.extract.linestring.apply(this, [multilinestring[i]]));
-            }
+            if (multilinestring.length)
+            	for (i = 0; i < multilinestring.length; i += 1)
+            	{
+            		parts.push(this.extract.linestring.apply(this, [multilinestring[i]]));
+            	}
+            else
+            	parts.push(this.extract.point.apply(this, [multilinestring]));
 
             return parts.join(',');
         },
